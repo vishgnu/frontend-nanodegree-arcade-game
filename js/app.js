@@ -71,7 +71,7 @@ Player.prototype.restart = function (done) {
     {
         if (hud.lives == 1)
         {
-            hud.points == 0;
+            hud.points = 0;
             hud.lives = 3;
         }
         else
