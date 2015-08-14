@@ -41,14 +41,20 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function (x,y) {
+var Player = function (x, y) {
+    this.lives = 3;
     this.x = x || 200;
     this.y = y || 400;
     this.sprite = 'images/char-boy.png';
     this.input = null;
 }
 
-Player.prototype.restart = function () {
+Player.prototype.restart = function (done) {
+    if (done)
+    {
+        hud.points += 100;
+    }
+
     this.x = 200;
     this.y = 400;
 }
@@ -65,7 +71,7 @@ Player.prototype.update = function (dt) {
             case "up":
                 // check completed
                 if (this.y < 0) {
-                    this.restart();
+                    this.restart(true);
                 }
                 else {
                     this.y -= yStep;
@@ -106,6 +112,22 @@ Player.prototype.handleInput = function (keycode) {
     this.input = keycode;
 }
 
+var Hud = function () {
+    this.lives = 3;
+    this.points = 0;
+}
+
+Hud.prototype.render = function () {
+    // heart
+    ctx.font = "48px serif";
+    ctx.fillText(this.lives, 40, 120);
+    console.log("Heart" + this.lives);
+
+    // points
+    console.log("Points" + this.points);
+    ctx.fillText(this.points, 0, 580);
+}
+
 
 
 // Now instantiate your objects.
@@ -119,6 +141,8 @@ var allEnemies = [
 // Place the player object in a variable called player
 
 var player = new Player();
+
+var hud = new Hud();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.

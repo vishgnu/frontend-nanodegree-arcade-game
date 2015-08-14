@@ -136,6 +136,10 @@ var Engine = (function(global) {
             }
         }
 
+        // hud images
+        ctx.drawImage(Resources.get('images/Heart.png'),0,10 );
+        ctx.drawImage(Resources.get('images/Star.png'), 0,430);
+
 
         renderEntities();
     }
@@ -153,6 +157,8 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+        hud.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -172,7 +178,9 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Heart.png',
+        'images/Star.png'
     ]);
     Resources.onReady(init);
 

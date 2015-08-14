@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend-nanodegree-arcade-game", ".", "{A0E136EA-DE10-4039-8827-A8B575733404}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "frontend-nanodegree-arcade-game", ".", "{2A021F17-C6BC-4CC5-A0FA-3BB78E3FA093}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_51674"
@@ -29,8 +29,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A0E136EA-DE10-4039-8827-A8B575733404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0E136EA-DE10-4039-8827-A8B575733404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A021F17-C6BC-4CC5-A0FA-3BB78E3FA093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A021F17-C6BC-4CC5-A0FA-3BB78E3FA093}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
