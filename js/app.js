@@ -8,6 +8,10 @@ var Enemy = function(x,y) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
+    this.radius = 40;
+    this.radiusOffX = 50;
+    this.radiusOffY = 110;
 }
 
 // Update the enemy's position, required method for game
@@ -36,6 +40,12 @@ Enemy.prototype.reSpawn = function (dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
+    // draw collision circle
+    ctx.beginPath();
+    ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = "blue";
+    ctx.stroke();
 }
 
 // Now write your own player class
@@ -47,6 +57,9 @@ var Player = function (x, y) {
     this.y = y || 400;
     this.sprite = 'images/char-boy.png';
     this.input = null;
+    this.radius = 40;
+    this.radiusOffX = 50;
+    this.radiusOffY = 100;
 }
 
 Player.prototype.restart = function (done) {
@@ -54,9 +67,22 @@ Player.prototype.restart = function (done) {
     {
         hud.points += 100;
     }
-
+    else
+    {
+        if (hud.lives == 1)
+        {
+            hud.points == 0;
+            hud.lives = 3;
+        }
+        else
+        {
+            hud.lives -= 1;
+        }
+        
+    }
     this.x = 200;
     this.y = 400;
+   
 }
 
 // Update for player
@@ -104,12 +130,36 @@ Player.prototype.update = function (dt) {
 Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     console.log("Player" + this.x, this.y);
+
+    // draw collision circle
+    ctx.beginPath();
+    ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = "red";
+    ctx.stroke();
 }
 
 
 Player.prototype.handleInput = function (keycode) {
     // call position update for player here
     this.input = keycode;
+}
+
+
+Player.prototype.checkCollisions = function()
+{
+    
+    for (bug = 0; bug < 4; bug++) {
+
+        var dx = (this.x + this.radiusOffX) - (allEnemies[bug].x + allEnemies[bug].radiusOffX);
+        var dy = (this.y + this.radiusOffY) - (allEnemies[bug].y + allEnemies[bug].radiusOffY);;
+        var distance = Math.sqrt(dx * dx + dy * dy);
+
+        console.log("Distance P>B" + bug + ":" + distance);
+        if (distance + 20 < this.radius + allEnemies[bug].radius) {
+            // restart with death
+            this.restart(false);
+        }
+    }
 }
 
 var Hud = function () {
