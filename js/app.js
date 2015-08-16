@@ -66,16 +66,22 @@ Player.prototype.restart = function (done) {
     if (done)
     {
         hud.points += 100;
+        var audio = new Audio('sounds/Score.mp3');
+        audio.play();
     }
     else
     {
         if (hud.lives == 1)
         {
+            var audio = new Audio('sounds/Start.mp3');
+            audio.play();
             hud.points = 0;
             hud.lives = 3;
         }
         else
         {
+            var audio = new Audio('sounds/Die.mp3');
+            audio.play();
             hud.lives -= 1;
         }
         
@@ -93,6 +99,8 @@ Player.prototype.update = function (dt) {
 
     if(this.input != null)
     {
+        var audio = new Audio('sounds/Jump.mp3');
+        audio.play();
         switch (this.input) {
             case "up":
                 // check completed
