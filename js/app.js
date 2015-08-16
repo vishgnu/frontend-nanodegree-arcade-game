@@ -42,10 +42,10 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
     // draw collision circle
-    ctx.beginPath();
-    ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = "blue";
-    ctx.stroke();
+    //ctx.beginPath();
+    //ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
+    //ctx.strokeStyle = "blue";
+    //ctx.stroke();
 }
 
 // Now write your own player class
@@ -140,10 +140,10 @@ Player.prototype.render = function () {
     console.log("Player" + this.x, this.y);
 
     // draw collision circle
-    ctx.beginPath();
-    ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = "red";
-    ctx.stroke();
+    //ctx.beginPath();
+    //ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
+    //ctx.strokeStyle = "red";
+    //ctx.stroke();
 }
 
 
