@@ -1,6 +1,25 @@
-frontend-nanodegree-arcade-game
-===============================
+﻿
+Welcome to Udacity Frogger-clone.
+=====================================================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
 
-for self-checking their submission.
+To start the application please open the index.html file in your browser.
+
+
+Please use the arrow-keys to move.
+
+		Up
+		↑
+LEFT  ←   →		RIGHT
+		↓
+		DOWN
+
+*Your lives will be shown within the heart and you can see your score will show 
+on the star.
+*After you have reached the water you need to take one more step up to get back to 
+the starting position and claim you points.
+*When you got caught by the bugs you will be repositioned to the start  and you will 
+loose one live.
+*After  you have no lives left you will restart fresh with 0 points and 3 lives.
+
+
