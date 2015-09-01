@@ -1,5 +1,7 @@
+
+
 // Enemies our player must avoid
-var Enemy = function(x,y) {
+var Enemy = function (x, y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     this.x = x;
@@ -12,33 +14,32 @@ var Enemy = function(x,y) {
     this.radius = 40;
     this.radiusOffX = 50;
     this.radiusOffY = 110;
-}
+};
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function (dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
 
-    if(this.x >450){
+    if (this.x > 450) {
         this.reSpawn()
     }
-    else
-    {
+    else {
         this.x += this.speed;
     }
-    
-}
+
+};
 
 Enemy.prototype.reSpawn = function (dt) {
     this.x = -30;
     this.speed = Math.floor((Math.random() * 3) + 1);
-}
+};
 
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
     // draw collision circle
@@ -46,9 +47,9 @@ Enemy.prototype.render = function() {
     //ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
     //ctx.strokeStyle = "blue";
     //ctx.stroke();
-}
+};
 
-// Now write your own player class
+// Now write your own player clasas
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function (x, y) {
@@ -60,36 +61,30 @@ var Player = function (x, y) {
     this.radius = 40;
     this.radiusOffX = 50;
     this.radiusOffY = 100;
-}
+};
 
 Player.prototype.restart = function (done) {
-    if (done)
-    {
+    if (done) {
         hud.points += 100;
         var audio = new Audio('sounds/Score.mp3');
         audio.play();
     }
-    else
-    {
-        if (hud.lives == 1)
-        {
+    else {
+        if (hud.lives == 1) {
             var audio = new Audio('sounds/Start.mp3');
             audio.play();
             hud.points = 0;
             hud.lives = 3;
         }
-        else
-        {
+        else {
             var audio = new Audio('sounds/Die.mp3');
             audio.play();
             hud.lives -= 1;
         }
-        
     }
     this.x = 200;
     this.y = 400;
-   
-}
+};
 
 // Update for player
 Player.prototype.update = function (dt) {
@@ -97,8 +92,7 @@ Player.prototype.update = function (dt) {
     var yStep = 82;
     var xStep = 100;
 
-    if(this.input != null)
-    {
+    if (this.input !== null) {
         var audio = new Audio('sounds/Jump.mp3');
         audio.play();
         switch (this.input) {
@@ -114,7 +108,7 @@ Player.prototype.update = function (dt) {
             case "down":
                 if (this.y < 400) {
                     this.y += yStep;
-                 }
+                }
                 break;
             case "left":
                 if (this.x > 0) {
@@ -132,7 +126,7 @@ Player.prototype.update = function (dt) {
 
         this.input = null;
     }
-}
+};
 
 // render player
 Player.prototype.render = function () {
@@ -144,22 +138,20 @@ Player.prototype.render = function () {
     //ctx.arc(this.x + this.radiusOffX, this.y + this.radiusOffY, this.radius, 0, 2 * Math.PI);
     //ctx.strokeStyle = "red";
     //ctx.stroke();
-}
+};
 
 
 Player.prototype.handleInput = function (keycode) {
     // call position update for player here
     this.input = keycode;
-}
+};
 
 
-Player.prototype.checkCollisions = function()
-{
-    
-    for (bug = 0; bug < 4; bug++) {
+Player.prototype.checkCollisions = function () {
+    for (var bug = 0; bug < 4; bug++) {
 
         var dx = (this.x + this.radiusOffX) - (allEnemies[bug].x + allEnemies[bug].radiusOffX);
-        var dy = (this.y + this.radiusOffY) - (allEnemies[bug].y + allEnemies[bug].radiusOffY);;
+        var dy = (this.y + this.radiusOffY) - (allEnemies[bug].y + allEnemies[bug].radiusOffY);
         var distance = Math.sqrt(dx * dx + dy * dy);
 
         console.log("Distance P>B" + bug + ":" + distance);
@@ -168,12 +160,12 @@ Player.prototype.checkCollisions = function()
             this.restart(false);
         }
     }
-}
+};
 
 var Hud = function () {
     this.lives = 3;
     this.points = 0;
-}
+};
 
 Hud.prototype.render = function () {
     // heart
@@ -184,9 +176,7 @@ Hud.prototype.render = function () {
     // points
     console.log("Points" + this.points);
     ctx.fillText(this.points, 0, 580);
-}
-
-
+};
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -197,9 +187,9 @@ var allEnemies = [
     new Enemy(0, 315)];
 
 // Place the player object in a variable called player
-
 var player = new Player();
 
+// create stats 
 var hud = new Hud();
 
 // This listens for key presses and sends the keys to your
